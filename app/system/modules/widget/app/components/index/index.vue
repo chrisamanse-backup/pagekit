@@ -25,7 +25,7 @@
 
         </div>
         <div data-uk-margin>
-            <input type="text" v-model="search" placeholder="{{ 'Search' | trans }}" v-on="keypress: $event.preventDefault() | key enter" debounce="200">
+            <input type="text" placeholder="{{ 'Search' | trans }}" v-model="search" v-on="keypress: $event.preventDefault() | key enter" debounce="200">
         </div>
     </div>
 
@@ -43,7 +43,7 @@
             <div class="pk-table-fake pk-table-fake-header pk-table-fake-subheading">
                 <div>
                     {{ position.name | trans }}
-                    <span v-if="position.description" class="uk-text-muted">{{ position.description | trans }}</span>
+                    <span class="uk-text-muted" v-if="position.description">{{ position.description | trans }}</span>
                 </div>
             </div>
 
@@ -57,11 +57,7 @@
 
 <script>
 
-    var $ = require('jquery');
-
     module.exports = Vue.extend({
-
-        template: __vue_template__,
 
         data: function() {
 
@@ -75,7 +71,7 @@
 
         created: function() {
 
-            this.$addChild(require('./edit.vue'));
+            this.$addChild(require('../edit/modal.vue'));
 
             this.Widgets = this.$resource('api/widget/:id');
             this.load();
@@ -165,7 +161,9 @@
 
         components: {
 
-            'widget-list': require('./list.vue')
+            'widget-list': require('./list.vue'),
+            'site-text': require('../widgets/text.vue'),
+            'assignment': require('../edit/assignment.vue')
 
         }
 

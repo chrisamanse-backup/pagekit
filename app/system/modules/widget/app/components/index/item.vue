@@ -1,6 +1,6 @@
 <template>
 
-    <li class="uk-nestable-item" data-id="{{ widget.id }}">
+    <li class="uk-nestable-item" data-id="{{ widget.id }}" v-show="widget | showWidget">
 
         <div class="uk-nestable-panel pk-table-fake">
 
@@ -15,7 +15,7 @@
             <div class="pk-table-width-150">
                 <div class="uk-form-select uk-nestable-nodrag" v-el="select">
                     <a></a>
-                    <select v-model="position.id" class="uk-width-1-1" options="positionOptions" v-on="input: reassign"></select>
+                    <select class="uk-width-1-1" v-model="position.id" v-on="input: reassign" options="positionOptions"></select>
                 </div>
             </div>
             <div class="pk-table-width-150">{{ typeName }}</div>
